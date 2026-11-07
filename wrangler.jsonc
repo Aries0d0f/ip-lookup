@@ -17,6 +17,7 @@
 		}
 	},
 	"upload_source_maps": true,
+	"placement": { "mode": "smart" },
 	"vars": {
 		// Cache TTL in seconds for upstream IP lookups.
 		"IP_LOOKUP_CACHE_TTL": "3600"
