@@ -1,0 +1,35 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ip-lookup",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-27",
+	// Reached only via ingress's service binding.
+	"workers_dev": false,
+	"preview_urls": false,
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": true
+		}
+	},
+	"upload_source_maps": true,
+	"vars": {
+		// Cache TTL in seconds for upstream IP lookups.
+		"IP_LOOKUP_CACHE_TTL": "3600"
+	},
+	"d1_databases": [
+		{
+			// Same database the site used; existing cache and migration history carry over.
+			"binding": "IP_LOOKUP_DB",
+			"database_name": "ip-lookup-cache",
+			"database_id": "fc963dec-80e8-4859-8f05-9d1b3be12e94",
+			"migrations_dir": "migrations"
+		}
+	],
+	// Set via `wrangler secret put`; `.dev.vars` locally.
+	"secrets": { "required": ["IPAPI_API_KEY"] }
+}

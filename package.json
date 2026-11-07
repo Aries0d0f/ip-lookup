@@ -1,0 +1,19 @@
+{
+	"name": "ip-lookup",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "wrangler dev",
+		"gen": "wrangler types",
+		"check": "wrangler types --check && tsc --noEmit",
+		"lint": "prettier --check .",
+		"format": "prettier --write .",
+		"deploy": "wrangler types --check && wrangler d1 migrations apply ip-lookup-cache --remote && wrangler deploy"
+	},
+	"devDependencies": {
+		"ansis": "^4.5.0",
+		"prettier": "^3.9.10",
+		"typescript": "^7.0.2",
+		"wrangler": "^4.158.0"
+	}
+}
